@@ -16,8 +16,8 @@
 <arg name="headless" value="$(arg headless)"/>
 <!-- arg name="world_name" value="$(find task_1)/world/tutorial_testing.world"/ -->
 </include>
-    <param name="robot_description" command="cat '$(find robot_description)/urdf/robot.xacro'" />
 
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find robot_description)/urdf/robot.xacro'" />
     <arg name="x" default="0"/>
     <arg name="y" default="0"/>
     <arg name="z" default="0.5"/>
