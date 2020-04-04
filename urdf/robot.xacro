@@ -64,12 +64,7 @@
 
   <!-- Laser scaner -->
   <link name="sensor_laser">
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="1" />
-      <!-- RANDOM INERTIA BELOW -->
-      <inertia ixx="0.02" ixy="0" ixz="0" iyy="0.02" iyz="0" izz="0.02"/>
-    </inertial>
+    <xacro:cylinder_inertia mass="1" r="0.05" l="0.1" />
 
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
