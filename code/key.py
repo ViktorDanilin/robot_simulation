@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
 import rospy
-from pynput.keyboard import Key, Listener, KeyCode, Key
+# from pynput.keyboard import Key, Listener, KeyCode, Key
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Int16
 
 
-def main(key):
+def main():
 
     forvard = 3
     back = -3
@@ -21,23 +21,24 @@ def main(key):
     pub3 = rospy.Publisher("/arduino/servo2", Int16, queue_size=10)
 
     while not rospy.is_shutdown():
-        if (key == KeyCode(char='w')):
+        key = input()
+        if (key == 'w'):
             vel_msg.linear.x = forvard
             print('go forward')
             pub1.publish(vel_msg)
-        elif (key == KeyCode(char='a')):
+        elif (key == 'a'):
             vel_msg.linear.x = left
             print('go left')
             pub1.publish(vel_msg)
-        elif (key == KeyCode(char='d')):
+        elif (key == 'd'):
             vel_msg.linear.x = right
             print('go right')
             pub1.publish(vel_msg)
-        elif (key == KeyCode(char='s')):
+        elif (key == 's'):
             vel_msg.linear.x = back
             print('go back')
             pub1.publish(vel_msg)
-        elif (key == KeyCode(char='t')):
+        elif (key == 't'):
             vel_msg.linear.x = 0
             vel_msg.linear.y = 0
             vel_msg.linear.z = 0
@@ -50,5 +51,5 @@ def main(key):
             exit()
 if __name__ == '__main__':
     try:
-        main(Key)
+        main()
     except rospy.ROSInterruptException:pass

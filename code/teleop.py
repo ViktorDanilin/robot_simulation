@@ -5,18 +5,20 @@ from pynput.keyboard import Key, Listener, KeyCode, Key
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Int16
 
-def on_press(self, key):
+def on_press(key):
+    global forvard,back,left,right,vel_msg,serv_msg,pub1,pub2,pub3
     if not rospy.is_shutdown():
+
         if (key == KeyCode(char='w')):
             vel_msg.linear.x = forvard
-            print('go forward')
+            print('go forvard')
             pub1.publish(vel_msg)
         elif (key == KeyCode(char='a')):
-            vel_msg.linear.x = left
+            vel_msg.angular.x = left
             print('go left')
             pub1.publish(vel_msg)
         elif (key == KeyCode(char='d')):
-            vel_msg.linear.x = right
+            vel_msg.angular.x = right
             print('go right')
             pub1.publish(vel_msg)
         elif (key == KeyCode(char='s')):
@@ -36,7 +38,7 @@ def on_press(self, key):
             exit()
             
 def main(key):
-
+    global forvard, back, left, right,vel_msg,serv_msg,pub1,pub2,pub3
     forvard = 3
     back = -3
     right = -2
