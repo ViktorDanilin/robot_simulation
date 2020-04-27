@@ -48,8 +48,7 @@ def main(key):
             pub1.publish(vel_msg)
         elif (key == Key.esc):
             exit()
-
-try:
-    main(Key)
-except rospy.ROSInterruptException:
-    pass
+if __name__ == '__main__':
+    try:
+        main(Key)
+    except rospy.ROSInterruptException:pass
