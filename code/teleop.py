@@ -53,7 +53,7 @@ def main(key):
     pub3 = rospy.Publisher("/arduino/servo2", Int16, queue_size=10)
     pub4 = rospy.Publisher("/arduino/motor1",Int32, queue_size=10)
     motor_msg = Int32
-    pub5 = rospy.Publisher("/arduino/skider",Int16, queue_size=10)
+    pub5 = rospy.Publisher("/arduino/slider",Int16, queue_size=10)
     slider_msg = Int16
     with Listener(on_press=on_press) as listener:
         listener.join()
