@@ -1,5 +1,7 @@
 # robot_simulation
 robot simulation in ROS
+узнать ip:
+* $ ipcongig
 подклчение к роверу по ssh:
 * $ ssh pi@turtlebroNN.local
 * $ brobro
