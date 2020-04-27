@@ -3,8 +3,8 @@
 import rospy
 from pynput.keyboard import Key, Listener, KeyCode, Key
 from geometry_msgs.msg import Twist
-from std_msgs.msg import Int16
-from std_msgs.msg import Int32
+from std_msgs.msg import UInt16
+from std_msgs.msg import UInt32
 
 def on_press(key):
     global forvard,back,left,right,vel_msg,serv_msg,pub1,pub2,pub3
@@ -48,12 +48,12 @@ def main(key):
     rospy.init_node("joystick", anonymous=True)
     pub1 = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
     vel_msg = Twist()
-    pub2 = rospy.Publisher("/arduino/servo1", Int16, queue_size=10)
+    pub2 = rospy.Publisher("/arduino/servo1", UInt16, queue_size=10)
     serv_msg = UInt16
-    pub3 = rospy.Publisher("/arduino/servo2", Int16, queue_size=10)
-    pub4 = rospy.Publisher("/arduino/motor1", Int32, queue_size=10)
+    pub3 = rospy.Publisher("/arduino/servo2", UInt16, queue_size=10)
+    pub4 = rospy.Publisher("/arduino/motor1", UInt32, queue_size=10)
     motor_msg = UInt32
-    pub5 = rospy.Publisher("/arduino/slider",Int16, queue_size=10)
+    pub5 = rospy.Publisher("/arduino/slider",UInt16, queue_size=10)
     slider_msg = UInt16
     with Listener(on_press=on_press) as listener:
         listener.join()
