@@ -49,12 +49,12 @@ def main(key):
     pub1 = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
     vel_msg = Twist()
     pub2 = rospy.Publisher("/arduino/servo1", Int16, queue_size=10)
-    serv_msg = Int16
+    serv_msg = UInt16
     pub3 = rospy.Publisher("/arduino/servo2", Int16, queue_size=10)
-    pub4 = rospy.Publisher("/arduino/motor1",Int32, queue_size=10)
-    motor_msg = Int32
+    pub4 = rospy.Publisher("/arduino/motor1", Int32, queue_size=10)
+    motor_msg = UInt32
     pub5 = rospy.Publisher("/arduino/slider",Int16, queue_size=10)
-    slider_msg = Int16
+    slider_msg = UInt16
     with Listener(on_press=on_press) as listener:
         listener.join()
             
