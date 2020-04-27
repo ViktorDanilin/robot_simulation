@@ -4,9 +4,8 @@ import inputs
 from std_msgs.msg import Float32
 from std_msgs.msg import Int16
 import time
-import json
 
-pads = inputs.devices.gamepads
+pads = inputs.devices.keyboards
 print(pads)
 if len(pads) == 0:
     raise Exception("Couldn't find any Gamepads!")
