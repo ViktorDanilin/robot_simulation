@@ -15,11 +15,11 @@ def on_press(key):
             print('go forvard')
             pub1.publish(vel_msg)
         elif (key == KeyCode(char='a')):
-            vel_msg.angular.x = left
+            vel_msg.angular.z = left
             print('go left')
             pub1.publish(vel_msg)
         elif (key == KeyCode(char='d')):
-            vel_msg.angular.x = right
+            vel_msg.angular.z = right
             print('go right')
             pub1.publish(vel_msg)
         elif (key == KeyCode(char='s')):
