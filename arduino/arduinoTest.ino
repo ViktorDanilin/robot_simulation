@@ -56,24 +56,24 @@ void motorRotation1(const std_msgs::UInt32& cmd_msg2) { // Мотор враше
   }
 }
 
+
+bool startMotorRotation2 = false;
+const int speeds = 70;
+int speedMotorRotation2 = speeds;
+
 void motorRotation2(const std_msgs::UInt32& cmd_msg2) { // шаговик
-  const int speeds = 70;
-  if (cmd_msg2.data == 0) {
-    stepper.setSpeed(-1 * speeds);
-    while (digitalRead(back_end_switch) == 1) {
-      stepper.runSpeed();
-    }
-    stepper.stop();
+  if (cmd_msg2.data == 2) {
+    startMotorRotation2 = false;
   }
-  else if (cmd_msg2.data == 2) {
-    stepper.stop();
+  else if (cmd_msg2.data == 0) {
+    startMotorRotation2 = true;
+    speedMotorRotation2 = speeds * -1;
+    stepper.setSpeed(speedMotorRotation2);
   }
   else {
-    stepper.setSpeed(speeds);
-    while (digitalRead(front_end_switch) == 1) {
-      stepper.runSpeed();
-    }
-    stepper.stop();
+    startMotorRotation2 = true;
+    speedMotorRotation2 = speeds * -1;
+    stepper.setSpeed(speedMotorRotation2);
   }
 }
 
@@ -81,8 +81,6 @@ ros::Subscriber<std_msgs::UInt16> subs1("/arduino/servo1", s1);
 ros::Subscriber<std_msgs::UInt16> subs2("/arduino/servo2", s2);
 ros::Subscriber<std_msgs::UInt32> subs3("/arduino/motor1", motorRotation1);
 ros::Subscriber<std_msgs::UInt32> subs4("/arduino/slider", motorRotation2); // шаговик
-
-
 
 
 
@@ -104,8 +102,26 @@ void setup() {
   servos.subscribe(subs4);
 }
 
+
 void loop() {
   servos.spinOnce();
+  if (startMotorRotation2) {
+    stepper.runSpeed();
+    if (speedMotorRotation2 < 0) {
+      if (digitalRead(back_end_switch) == 0) {
+        stepper.stop();
+        startMotorRotation2 = false;
+      }
+    }
+    else {
+      if (digitalRead(front_end_switch) == 0) {
+        stepper.stop();
+        startMotorRotation2 = false;
+      }
+    }
+  }
+  else {
+    stepper.stop();
+  }
   delay(1);
-
 }
