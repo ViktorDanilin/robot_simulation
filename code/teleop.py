@@ -4,6 +4,7 @@ import rospy
 from pynput.keyboard import Key, Listener, KeyCode, Key
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Int16
+from std_msgs.msg import Int32
 
 def on_press(key):
     global forvard,back,left,right,vel_msg,serv_msg,pub1,pub2,pub3
@@ -50,7 +51,10 @@ def main(key):
     pub2 = rospy.Publisher("/arduino/servo1", Int16, queue_size=10)
     serv_msg = Int16
     pub3 = rospy.Publisher("/arduino/servo2", Int16, queue_size=10)
-
+    pub4 = rospy.Publisher("/arduino/motor1",Int32, queue_size=10)
+    motor_msg = Int32
+    pub5 = rospy.Publisher("/arduino/skider",Int16, queue_size=10)
+    slider_msg = Int16
     with Listener(on_press=on_press) as listener:
         listener.join()
             
