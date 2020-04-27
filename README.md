@@ -1,8 +1,8 @@
 # robot_simulation
 robot simulation in ROS
-узнать ip:
+## узнать ip:
 * $ ipcongig
-подклчение к роверу по ssh:
+## подклчение к роверу по ssh:
 * $ ssh pi@turtlebroNN.local
 * $ brobro
 * $ export ROS_MASTER_URI=http://192.168.0.250:11311/ ip ровера
