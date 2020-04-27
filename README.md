@@ -3,10 +3,10 @@ robot simulation in ROS
 ## узнать ip:
 * $ ipcongig
 ## подклчение к роверу по ssh:
-* $ ssh pi@turtlebroNN.local
+* $ ssh pi@10.0.0.70
 * $ brobro
-* $ export ROS_MASTER_URI=http://192.168.0.250:11311/ ip ровера
-* $ export ROS_HOSTNAME=192.168.0.100 ip компа
+* $ export ROS_MASTER_URI='http://10.0.0.70:11311/' ip ровера
+* $ export ROS_HOSTNAME=10.0.0.NN ip компа
 ## запуск камеры:
 * roslaunch turtlebro uvc_camera.launch
 * rostopic list
