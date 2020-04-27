@@ -1,4 +1,4 @@
-#Robot keyboard control
+# Robot keyboard control
 ## запуск
 * $ python ваш путь до файла/teleop.py
 ## управление
