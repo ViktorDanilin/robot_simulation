@@ -21,4 +21,5 @@ robot simulation in ROS
 * данные в топике /cmd_vel, тип данных geometry_msgs/Twist
 * для управления: $ rostopic pub /cmd_vel geometry_msgs/Twist -- '[0, 0, 0]' '[0, 0, 0]'
 * '[10, 0, 0]' '[0, 0, 0]' - вперед 10 м/с
+
 *'[0, 0, 0]' '[0, 0, 2]' - поворот 2 рад/с
