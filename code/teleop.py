@@ -11,39 +11,30 @@ def on_press(key):
     if not rospy.is_shutdown():
         if (key == KeyCode(char='n')):
             motor_msg = 0
-            #стоп крутилка
             pub4.publish(motor_msg)
         elif (key == KeyCode(char='b')):
             motor_msg = 1
-            #влево крутилка
             pub4.publish(motor_msg)
         elif (key == KeyCode(char='m')):
             motor_msg = 2
-            #вправо крутилка
             pub4.publish(motor_msg)
         if (key == KeyCode(char='z')):
             slider_msg = 0
-            #слайдер вперед
-            pub5.publish(motor_msg)
+            pub5.publish(slider_msg)
         elif (key == KeyCode(char='x')):
             slider_msg = 1
-            #слайдер назад
-            pub5.publish(motor_msg)
+            pub5.publish(slider_msg)
         if (key == KeyCode(char='w')):
             vel_msg.linear.x = forvard
-            #вперед
             pub1.publish(vel_msg)
         elif (key == KeyCode(char='a')):
             vel_msg.angular.z = left
-            #влево
             pub1.publish(vel_msg)
         elif (key == KeyCode(char='d')):
             vel_msg.angular.z = right
-            #вправо
             pub1.publish(vel_msg)
         elif (key == KeyCode(char='s')):
             vel_msg.linear.x = back
-            #назад
             pub1.publish(vel_msg)
         elif (key == KeyCode(char='t')):
             vel_msg.linear.x = 0
@@ -52,7 +43,6 @@ def on_press(key):
             vel_msg.angular.x = 0
             vel_msg.angular.y = 0
             vel_msg.angular.z = 0
-            #стоп
             pub1.publish(vel_msg)
         elif (key == Key.esc):
             exit()
