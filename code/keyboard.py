@@ -3,21 +3,16 @@
 
 import rospy
 from pynput.keyboard import Key, Listener, KeyCode, Key
-from std_msgs.msg import Float32
+from geometry_msgs.msg import Twist
 from std_msgs.msg import Int16
 import time
 
 class Keyboard():
     def __init__(self):
         rospy.init_node("joystick", anonymous=True)
-        pub1 = rospy.Publisher("/motor1", Float32, queue_size=10)
-        pub2 = rospy.Publisher("/motor2", Float32, queue_size=10)
-        pub3 = rospy.Publisher("/arduino/servo1", Int16,
-                               queue_size=10)  # servo up/down
-        pub4 = rospy.Publisher("/arduino/servo2", Int16,
-                               queue_size=10)  # servo grab
-        config_path = rospy.get_param("~config", "config.json")
-        config = json.load(open(config_path))
+        pub1 = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
+        pub2 = rospy.Publisher("/arduino/servo1", Int16, queue_size=10)  # servo up/down
+        pub3 = rospy.Publisher("/arduino/servo2", Int16, queue_size=10)  # servo grab
         
         self.last = None        
         with Listener(on_press=on_press, on_release=on_release) as listener:
