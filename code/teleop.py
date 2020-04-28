@@ -75,7 +75,7 @@ def main(key):
     serv2_msg = UInt16
     pub4 = rospy.Publisher("/arduino/motor1", UInt32, queue_size=10)
     motor_msg = UInt32
-    pub5 = rospy.Publisher("/arduino/slider",UInt32, queue_size=10)
+    pub5 = rospy.Publisher("/arduino/slider", UInt32, queue_size=10)
     slider_msg = UInt32
     with Listener(on_press=on_press) as listener:
         listener.join()
