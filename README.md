@@ -7,6 +7,8 @@ robot simulation in ROS
 * $ brobro
 * $ export ROS_MASTER_URI='http://10.0.0.70:11311/' ip ровера
 * $ export ROS_HOSTNAME=10.0.0.NN ip компа
+* Если вы являетесь оператором ровера,то вышеуказанные команды нужно прописать в ~/.bashrc
+* sudo nano ~/.bashrc 
 ## запуск камеры:
 * roslaunch turtlebro uvc_camera.launch
 * rostopic list
