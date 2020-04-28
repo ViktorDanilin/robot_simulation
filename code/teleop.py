@@ -7,7 +7,7 @@ from std_msgs.msg import UInt16
 from std_msgs.msg import UInt32
 
 def on_press(key):
-    global forvard,back,left,right,vel_msg,serv_msg,motor_msg,slider_msg,pub1,pub2,pub3,pub4,pub5
+    global forvard, back, left, right, vel_msg, serv1_msg, serv2_msg, motor_msg, slider_msg, pub1, pub2, pub3, pub4, pub5
     if not rospy.is_shutdown():
         if (key == KeyCode(char='n')):
             motor_msg = 0
@@ -24,6 +24,18 @@ def on_press(key):
         elif (key == KeyCode(char='x')):
             slider_msg = 1
             pub5.publish(slider_msg)
+        if (key == KeyCode(char='p')):
+            serv1_msg += 20
+            pub2.publish(serv1_msg)
+        elif (key == KeyCode(char='l')):
+            serv1_msg -= 20
+            pub2.publish(serv1_msg)
+        if (key == KeyCode(char='i')):
+            serv2_msg += 20
+            pub3.publish(serv2_msg)
+        elif (key == KeyCode(char='j')):
+            serv2_msg -= 20
+            pub3.publish(serv2_msg)
         if (key == KeyCode(char='w')):
             vel_msg.linear.x = forvard
             pub1.publish(vel_msg)
@@ -48,7 +60,7 @@ def on_press(key):
             exit()
             
 def main(key):
-    global forvard, back, left, right,vel_msg,motor_msg,slider_msgserv_msg,pub1,pub2,pub3,pub4,pub5
+    global forvard, back, left, right, vel_msg, motor_msg, slider_msg, serv1_msg, serv2_msg, pub1, pub2, pub3, pub4, pub5
     forvard = 3
     back = -3
     right = -2
@@ -58,8 +70,9 @@ def main(key):
     pub1 = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
     vel_msg = Twist()
     pub2 = rospy.Publisher("/arduino/servo1", UInt16, queue_size=10)
-    serv_msg = UInt16
+    serv1_msg = UInt16
     pub3 = rospy.Publisher("/arduino/servo2", UInt16, queue_size=10)
+    serv2_msg = UInt16
     pub4 = rospy.Publisher("/arduino/motor1", UInt32, queue_size=10)
     motor_msg = UInt32
     pub5 = rospy.Publisher("/arduino/slider",UInt32, queue_size=10)
