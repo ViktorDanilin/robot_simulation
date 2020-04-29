@@ -15,7 +15,7 @@ class Autonomca():
         Data = PoseStamped(pose.position.x = self.x_start,pose.position.y = self.y_start,pose.position.z = self.z_start,pose.position.w = self.w_start)
         pub.publish(Data)
         exit()
-    def spin(self): # Утилита для общения с топика    ми
+    def spin(self): 
         rospy.spin()
     def __init__(self):
         self.x_start, self.y_start, self.z_start, self.w_start =0.0,0.0,0.0,0.0
