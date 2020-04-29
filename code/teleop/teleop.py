@@ -24,6 +24,9 @@ def on_press(key):
         elif (key == KeyCode(char='z')):
             slider_msg = 1
             pub5.publish(slider_msg)
+        elif (key == KeyCode(char='v')):
+            slider_msg = 2
+            pub5.publish(slider_msg)
         if (key == KeyCode(char='p')):
             serv1_msg = 140
             pub2.publish(serv1_msg)
@@ -62,7 +65,14 @@ def on_press(key):
             vel_msg.angular.y = 0
             vel_msg.angular.z = 0
             pub1.publish(vel_msg)
-        elif (key == Key.esc):
+        elif (key == KeyCode(char='y')):
+            vel_msg.linear.x = 0
+            vel_msg.linear.y = 0
+            vel_msg.linear.z = 0
+            vel_msg.angular.x = 0
+            vel_msg.angular.y = 0
+            vel_msg.angular.z = 0
+            pub1.publish(vel_msg)
             exit()
             
 def main(key):
