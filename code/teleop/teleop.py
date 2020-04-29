@@ -18,22 +18,28 @@ def on_press(key):
         elif (key == KeyCode(char='m')):
             motor_msg = 2
             pub4.publish(motor_msg)
-        if (key == KeyCode(char='z')):
+        if (key == KeyCode(char='x')):
             slider_msg = 0
             pub5.publish(slider_msg)
-        elif (key == KeyCode(char='x')):
+        elif (key == KeyCode(char='z')):
             slider_msg = 1
             pub5.publish(slider_msg)
         if (key == KeyCode(char='p')):
-            serv1_msg = 170
+            serv1_msg = 140
             pub2.publish(serv1_msg)
         elif (key == KeyCode(char='l')):
+            serv1_msg = 70
+            pub2.publish(serv1_msg)
+        elif (key == KeyCode(char='k')):
             serv1_msg = 10
             pub2.publish(serv1_msg)
         if (key == KeyCode(char='i')):
             serv2_msg = 170
             pub3.publish(serv2_msg)
         elif (key == KeyCode(char='j')):
+            serv2_msg = 85
+            pub3.publish(serv2_msg)
+        elif (key == KeyCode(char='h')):
             serv2_msg = 10
             pub3.publish(serv2_msg)
         if (key == KeyCode(char='w')):
