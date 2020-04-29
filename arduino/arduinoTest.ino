@@ -24,11 +24,40 @@ Servo servo45; //small
 class NewHardware : public ArduinoHardware {
   public: NewHardware(): ArduinoHardware(&Serial1, 115200) {};
 };
+
+/*Servo nfc; //  45 pin (10 - нижняя позиция, 85, примерно перпендикуляр, 170 верхняя позиция по умолчанию)
+Servo lift; // 44 pin (140 - нижняя позиция по умолчанию,  70 - примерно перпендикуляр, максимальная высота, 30 придельное значение до дальнего упора)
+*/
 ros::NodeHandle  servos;
 void s1(const std_msgs::UInt16& cmd_msg) {
+  int sev = cmd_msg.data;
+  int sevStart = servo44.read();
+  if (sevStart > sev){
+    for (int k = sevStart; k >= sev; k -= 10) {
+      servo44.write(k); delay(100);
+    }
+  }
+  else{
+    for (int k = sevStart; k < sev; k += 10) {
+      servo44.write(k); delay(100);
+    }
+  }
   servo44.write(cmd_msg.data);
 }
 void s2(const std_msgs::UInt16& cmd_msg) {
+
+  int sev = cmd_msg.data;
+  int sevStart = servo45.read();
+  if (sevStart > sev){
+    for (int k = sevStart; k >= sev; k -= 5) {
+      servo45.write(k); delay(100);
+    }
+  }
+  else{
+    for (int k = sevStart; k < sev; k += 5) {
+      servo45.write(k); delay(100);
+    }
+  }
   servo45.write(cmd_msg.data);
 }
 
@@ -48,21 +77,28 @@ void motorRotation1(const std_msgs::UInt32& cmd_msg2) {
 }
 
 
-//bool startMotorRotation2 = false;
-const int speeds = 70;
+bool startMotorRotation2 = false;
+
 //int speedMotorRotation2 = speeds;
 std_msgs::String str_msg;
 ros::Publisher chatter("chatter", &str_msg);
-void motorRotation2(const std_msgs::UInt32& cmd_msg2) { // шаговик
+
+void slider(const std_msgs::UInt32& cmd_msg2) { // шаговик
+  const int speeds = 70;
+  str_msg.data = cmd_msg2.data;
+  chatter.publish(&str_msg);
   if (cmd_msg2.data == 0) {
+    startMotorRotation2 = false;
     stepper.stop();
   }
   else if (cmd_msg2.data == 1) {
-    stepper.setSpeed(speeds * -1);
+    stepper.setSpeed(-1 * speeds);
+    startMotorRotation2 = true;
     stepper.runSpeed();
   }
   else if (cmd_msg2.data == 2) {
     stepper.setSpeed(speeds);
+    startMotorRotation2 = true;
     stepper.runSpeed();
   }
   /*if (cmd_msg2.data == 2) {
@@ -95,7 +131,7 @@ void nfcRun(const std_msgs::Int32MultiArray& hexk) {
 ros::Subscriber<std_msgs::UInt16> subs1("/arduino/servo1", s1);
 ros::Subscriber<std_msgs::UInt16> subs2("/arduino/servo2", s2);
 ros::Subscriber<std_msgs::UInt32> subs3("/arduino/motor1", motorRotation1);
-ros::Subscriber<std_msgs::UInt32> subs4("/arduino/slider", motorRotation2); // шаговик
+ros::Subscriber<std_msgs::UInt32> subs4("/arduino/slider", slider); // шаговик
 ros::Subscriber<std_msgs::Int32MultiArray> nfc("nfc", nfcRun);
 
 
@@ -174,6 +210,12 @@ void setup() {
 
 void loop() {
   servos.spinOnce();
+  if (startMotorRotation2){
+    stepper.runSpeed();
+  }
+  else{
+    stepper.stop();
+  }
   /*if (startMotorRotation2) {
     stepper.runSpeed();
     if (speedMotorRotation2 < 0) {
