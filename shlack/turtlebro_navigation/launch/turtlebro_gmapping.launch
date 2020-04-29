@@ -1,0 +1,13 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="$(env ROVER_MODEL)" doc="model type [turtlebro, brover]"/>
+  <arg name="open_rviz" default="true"/>
+
+  <include file="$(find turtlebro_navigation)/launch/gmapping.launch"/>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find turtlebro_navigation)/rviz/turtlebro_navigation.rviz"/>
+  </group>
+</launch>
