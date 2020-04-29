@@ -55,7 +55,7 @@ def take_action(regions):
         angular_z = -0.5
     elif regions['front'] > 1 and regions['fleft'] < 1 and regions['fright'] < 1:
         state_description = 'case 8 - fleft and fright'
-        linear_x = 0.5
+        linear_x = 0.2
         angular_z = 0
     else:
         state_description = 'unknown case'
