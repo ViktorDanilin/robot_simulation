@@ -18,13 +18,13 @@ def on_press(key):
         elif (key == KeyCode(char='m')):
             motor_msg = 2
             pub4.publish(motor_msg)
-        if (key == KeyCode(char='x')):
+        if (key == KeyCode(char='z')):
             slider_msg = 0
             pub5.publish(slider_msg)
-        elif (key == KeyCode(char='z')):
+        elif (key == KeyCode(char='x')):
             slider_msg = 1
             pub5.publish(slider_msg)
-        elif (key == KeyCode(char='v')):
+        elif (key == KeyCode(char='c')):
             slider_msg = 2
             pub5.publish(slider_msg)
         if (key == KeyCode(char='p')):
