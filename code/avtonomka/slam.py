@@ -71,7 +71,7 @@ def main():
 
     pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
 
-    sub = rospy.Subscriber('/robot/laser/scan', LaserScan, clbk_laser)
+    sub = rospy.Subscriber('/scan', LaserScan, clbk_laser)
 
     rospy.spin()
 
