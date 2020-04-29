@@ -3,7 +3,8 @@ robot simulation in ROS
 ## узнать ip:
 * $ ipcongig
 ## подклчение к роверу по ssh:
-* $ ssh pi@10.0.0.70
+* $ ssh pi@10.0.0.70 - turtlebot
+* $ ssh pi@10.0.0.79- brover
 * $ brobro
 * $ export ROS_MASTER_URI='http://10.0.0.70:11311/' ip ровера
 * $ export ROS_HOSTNAME=10.0.0.NN ip компа
