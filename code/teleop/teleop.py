@@ -57,7 +57,7 @@ def on_press(key):
         elif (key == KeyCode(char='s')):
             vel_msg.linear.x = back
             pub1.publish(vel_msg)
-        elif (key == KeyCode(char='t')):
+        elif (key == KeyCode(char='f')):
             vel_msg.linear.x = 0
             vel_msg.linear.y = 0
             vel_msg.linear.z = 0
