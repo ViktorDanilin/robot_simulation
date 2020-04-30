@@ -40,7 +40,7 @@ def on_press(key):
             serv2_msg = 170
             pub3.publish(serv2_msg)
         elif (key == KeyCode(char='j')):
-            serv2_msg = 85
+            serv2_msg = 60
             pub3.publish(serv2_msg)
         elif (key == KeyCode(char='h')):
             serv2_msg = 10
@@ -77,10 +77,10 @@ def on_press(key):
             
 def main(key):
     global forvard, back, left, right, vel_msg, motor_msg, slider_msg, serv1_msg, serv2_msg, pub1, pub2, pub3, pub4, pub5
-    forvard = 0.3
-    back = -0.3
-    right = -0.3
-    left = 0.3
+    forvard = 0.2
+    back = -0.2
+    right = -0.2
+    left = 0.2
 
     rospy.init_node("joystick", anonymous=True)
     pub1 = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
