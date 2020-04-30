@@ -19,7 +19,7 @@ class Final():
 
             ass.header.seq = 1
             ass.header.stamp = rospy.Time.now()
-            ass.header.frame_id = "map"
+            ass.header.frame_id = "base_footprint"
 
             ass.pose.orientation.x = 0
             ass.pose.orientation.y = 0
