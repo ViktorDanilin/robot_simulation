@@ -31,7 +31,7 @@ class Final():
 
             ass2.header.seq = 1
             ass2.header.stamp = rospy.Time.now()
-            ass2.header.frame_id = "map"
+            ass2.header.frame_id = "base_link"
 
             ass2.pose.pose.orientation.x = 0
             ass2.pose.pose.orientation.y = 0
