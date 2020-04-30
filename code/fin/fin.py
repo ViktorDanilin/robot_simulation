@@ -16,7 +16,7 @@ class Final():
             ass = PoseStamped()
             ass.header.seq = 1
             ass.header.stamp = rospy.Time.now()
-            ass.header.frame_id = "map"
+            ass.header.frame_id = "base_link"
 
             ass.pose.orientation.x = self.x
             ass.pose.orientation.y = self.y
@@ -24,7 +24,7 @@ class Final():
             ass.pose.position.x = self.position_now[0]
             ass.pose.position.y = self.position_now[1]
             ass.pose.position.z = 0
-            ass.pose.orientation.w = 0.0
+            ass.pose.orientation.w = 1.0
             rospy.sleep(1)
             self._pub.publish(ass)
 
